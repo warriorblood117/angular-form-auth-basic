@@ -25,7 +25,7 @@ export class LoginComponent {
       },
       error: err => {
         // Manejar errores de autenticación
-        this.errorMessage = 'Invalid username or password';
+        this.errorMessage = 'Invalid username or password' + JSON.stringify(err);
       },
       complete: () =>  console.log(this.username, this.password)
     });
