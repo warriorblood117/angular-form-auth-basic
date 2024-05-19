@@ -1,5 +1,5 @@
 <div class="login-container">
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" method="post">
     <div>
       <label for="username">Username:</label>
       <input type="text" id="username" [(ngModel)]="username" name="username" required>

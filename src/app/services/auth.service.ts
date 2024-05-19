@@ -9,27 +9,33 @@ export class AuthService {
 
   private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient) {}
 
-  login(username:string, password: string):Observable<any>{
+  login(username: string, password: string): Observable<any> {
+    console.log("esoty en el servicio de autenticacion", username, password)
+    const body = {
+      username: username,
+      password: password
+    };
+
     const headers = new HttpHeaders({
-      'Authorization': 'Basic ' +  btoa(username + ':' + password)
+      'Content-Type': 'application/json'
     });
-    return this.http.get(`http://localhost:8081/auth/get`, {headers}).pipe(
-      tap(()=>{
-        localStorage.setItem('loggedIn','true');
+
+    return this.http.post(`http://localhost:8081/auth/login`, body, { headers }).pipe(
+      tap(() => {
+        localStorage.setItem('loggedIn', 'true');
         this.loggedIn.next(true);
       })
     );
   }
 
-  logout():void{
+  logout(): void {
     localStorage.removeItem('loggedIn');
     this.loggedIn.next(false);
   }
 
-  isLoggedIn(): Observable<boolean>{
+  isLoggedIn(): Observable<boolean> {
     return this.loggedIn.asObservable();
   }
-
 }
