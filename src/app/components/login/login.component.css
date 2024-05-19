@@ -1,0 +1,10 @@
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+}
+.error {
+  color: red;
+}
